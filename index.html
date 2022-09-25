@@ -7,15 +7,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="assets/reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Sans:wght@100&family=Oswald:wght@500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
+    <header>
+        <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container ">
+                <h1 class="display-4">Weather Dashboard</h1>
+            </div>
+        </div>
+    </header>
 
+    <main class="container-fluid">
+        <div class="row">
+            <section class="col-12 col-md-4 col-lg-2">
+                <div class="card text-center cardBorder">
+                    <h1>Search For City:</h1>
+                    <div class="card-body">
+                        <input type="text" placeholder="search" class="form-control">
 
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-sm btn-block btnBorder">Search</button>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="city-list">
+                            <!-- append cities here after search -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
+            <section class="col-12 col-md-8 col-lg-9">
+                <div class="card mb-3 cardBorder2">
+                    <div class="card-body current-weather-condition">
+                        <!-- append current Weather info about city here -->
+                    </div>
+                </div>
+
+                <div class="forcast-heading">
+                    <h2>5 Days Forecast:</h2>
+                </div>
+
+                <div class="container-fluid forcast-container">
+
+                    <div class="row text-center">
+                        <!-- <div class="col">col</div>
+                        <div class="col">col</div>
+                        <div class="col">col</div>
+                        <div class="col">col</div>
+                        <div class="col">col</div> -->
+                        <!-- append 5 days of weather forcast here -->
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>

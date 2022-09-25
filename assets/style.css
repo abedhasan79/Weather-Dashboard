@@ -1,0 +1,45 @@
+.jumbotron {
+    background: linear-gradient(135deg, rgb(81, 66, 105) 60%, rgb(52, 3, 117));
+    color: white;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+.display-4 {
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Oswald', sans-serif;
+    font-size: 5vh;
+}
+
+.cardBorder{
+    border: none;
+}
+.card-body{
+    border-bottom: 1px solid black;
+}
+
+.btnBorder{
+    margin-top: 1vh;
+}
+
+.forcast-heading{
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.forcast-container{
+    border: none;
+}
+
+.col{
+    background: linear-gradient(135deg, rgb(81, 66, 105) 60%, rgb(52, 3, 117));
+    color: white;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+.cardBorder2{
+    background: linear-gradient(135deg, rgb(81, 66, 105) 60%, rgb(52, 3, 117));
+    color: white;
+}
