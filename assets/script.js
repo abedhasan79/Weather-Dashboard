@@ -133,30 +133,56 @@ searchBtn.on('click', function () {
             day6AverageHumidity= day6AverageHumidity/8;
 
             console.log(day6AverageHumidity);
+            // setting up icons
+            let iconeCode2 = dailyWeather[0][4].weather[0].icon;
+            let iconUrl2 = "http://openweathermap.org/img/w/" + iconeCode2 + ".png";
+            let imageIcon2 = $('<img>').addClass('weather-icon').attr('src', iconUrl2);
+            // console.log(iconeCode2);
+
+            let iconeCode3 = dailyWeather[1][4].weather[0].icon;
+            let iconUrl3 = "http://openweathermap.org/img/w/" + iconeCode3 + ".png";
+            let imageIcon3 = $('<img>').addClass('weather-icon').attr('src', iconUrl3);
+
+            let iconeCode4 = dailyWeather[2][4].weather[0].icon;
+            let iconUrl4 = "http://openweathermap.org/img/w/" + iconeCode4 + ".png";
+            let imageIcon4 = $('<img>').addClass('weather-icon').attr('src', iconUrl4);
+
+            let iconeCode5 = dailyWeather[3][4].weather[0].icon;
+            let iconUrl5 = "http://openweathermap.org/img/w/" + iconeCode5 + ".png";
+            let imageIcon5 = $('<img>').addClass('weather-icon').attr('src', iconUrl5);
+
+            let iconeCode6 = dailyWeather[4][4].weather[0].icon;
+            let iconUrl6 = "http://openweathermap.org/img/w/" + iconeCode6 + ".png";
+            let imageIcon6 = $('<img>').addClass('weather-icon').attr('src', iconUrl6);
 
             $('.forcast-heading').addClass('p-2 text-center').text("Next 5-Day Forecast:");
             
             $('.day2').addClass('col').text(day2Date);
+            $('.day2').append(imageIcon2);
             $('.day2').append($('<p>').addClass('p-2').text("Temparature: " + day2AverageTemp + "\u00B0" + "C"));
             $('.day2').append($('<p>').addClass('p-2').text("Wind Speed: " + day2AverageWind + "MPH"));
             $('.day2').append($('<p>').addClass('p-2').text("Humidity: " + day2AverageHumidity + "%"));
 
             $('.day3').addClass('col').text(day3Date);
+            $('.day3').append(imageIcon3);
             $('.day3').append($('<p>').addClass('p-2').text("Temparature: " + day3AverageTemp + "\u00B0" + "C"));
             $('.day3').append($('<p>').addClass('p-2').text("Wind Speed: " + day3AverageWind + "MPH"));
             $('.day3').append($('<p>').addClass('p-2').text("Humidity: " + day3AverageHumidity + "%"));
 
             $('.day4').addClass('col').text(day3Date);
+            $('.day4').append(imageIcon4);
             $('.day4').append($('<p>').addClass('p-2').text("Temparature: " + day4AverageTemp + "\u00B0" + "C"));
             $('.day4').append($('<p>').addClass('p-2').text("Wind Speed: " + day4AverageWind + "MPH"));
             $('.day4').append($('<p>').addClass('p-2').text("Humidity: " + day4AverageHumidity + "%"));
 
             $('.day5').addClass('col').text(day3Date);
+            $('.day5').append(imageIcon5);
             $('.day5').append($('<p>').addClass('p-2').text("Temparature: " + day5AverageTemp + "\u00B0" + "C"));
             $('.day5').append($('<p>').addClass('p-2').text("Wind Speed: " + day5AverageWind + "MPH"));
             $('.day5').append($('<p>').addClass('p-2').text("Humidity: " + day5AverageHumidity + "%"));
 
             $('.day6').addClass('col').text(day3Date);
+            $('.day6').append(imageIcon6);
             $('.day6').append($('<p>').addClass('p-2').text("Temparature: " + day6AverageTemp + "\u00B0" + "C"));
             $('.day6').append($('<p>').addClass('p-2').text("Wind Speed: " + day6AverageWind + "MPH"));
             $('.day6').append($('<p>').addClass('p-2').text("Humidity: " + day6AverageHumidity + "%"));
