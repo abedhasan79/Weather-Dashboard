@@ -42,4 +42,10 @@
 .cardBorder2{
     background: linear-gradient(135deg, rgb(81, 66, 105) 60%, rgb(52, 3, 117));
     color: white;
+    display: none;
+}
+
+.city-searched{
+    background-color: rgb(92, 88, 92);
+    color: rgb(255, 255, 255);
 }

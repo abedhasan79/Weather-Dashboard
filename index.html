@@ -32,11 +32,10 @@
                 <div class="card text-center cardBorder">
                     <h1>Search For City:</h1>
                     <div class="card-body">
-                        <input type="text" placeholder="search" class="form-control">
-
-                        <div>
-                            <button type="submit" class="btn btn-primary btn-sm btn-block btnBorder">Search</button>
-                        </div>
+                        <form class="search-form">
+                            <input type="text" id="city-name" class="form-control " placeholder="&#x1F50E;ex: Toronto">
+                            <button type="button" id="search-btn" class="btn btn-primary btn-sm btn-block btnBorder ">Search</button>
+                        </form>
                     </div>
                     <div>
                         <ul class="city-list">
@@ -48,18 +47,22 @@
 
             <section class="col-12 col-md-8 col-lg-9">
                 <div class="card mb-3 cardBorder2">
-                    <div class="card-body current-weather-condition">
+                    <div class="card-body current-weather-condition text-center">
                         <!-- append current Weather info about city here -->
+                        
                     </div>
                 </div>
 
-                <div class="forcast-heading">
-                    <h2>5 Days Forecast:</h2>
-                </div>
 
                 <div class="container-fluid forcast-container">
-
+                    <!-- append 5 days forecase heading here -->
+                    <h2 class="forcast-heading"></h2>
                     <div class="row text-center">
+                        <div class="day2"></div>
+                        <div class="day2"></div>
+                        <div class="day2"></div>
+                        <div class="day2"></div>
+                        <div class="day2"></div>
                         <!-- <div class="col">col</div>
                         <div class="col">col</div>
                         <div class="col">col</div>
