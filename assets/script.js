@@ -68,7 +68,11 @@ searchBtn.on('click', function () {
             }
             console.log(dailyWeather);
             console.log(moment().add(1, 'days').format('MM-DD-YYYY'));
-
+            let day2Date = moment().add(1, 'days').format('MM-DD-YYYY');
+            let day3Date = moment().add(2, 'days').format('MM-DD-YYYY');
+            let day4Date = moment().add(3, 'days').format('MM-DD-YYYY');
+            let day5Date = moment().add(4, 'days').format('MM-DD-YYYY');
+            let day6Date = moment().add(5, 'days').format('MM-DD-YYYY');
             // let day2AverageTemp=dailyWeather[0][0].main.temp;
             // console.log(day2AverageTemp);
             let day2AverageTemp = 0;
@@ -108,29 +112,54 @@ searchBtn.on('click', function () {
                 day6AverageHumidity += (dailyWeather[4][k].main.humidity);
             }
 
-            day2AverageTemp = day2AverageTemp/8;
-            day2AverageWind = day2AverageWind/8;
+            day2AverageTemp = Math.round((day2AverageTemp/8));
+            day2AverageWind = Math.round(day2AverageWind/8);
             day2AverageHumidity= day2AverageHumidity/8;
 
-            day3AverageTemp = day3AverageTemp/8;
-            day3AverageWind = day3AverageWind/8;
+            day3AverageTemp = Math.round(day3AverageTemp/8);
+            day3AverageWind = Math.round(day3AverageWind/8);
             day3AverageHumidity= day3AverageHumidity/8;
 
-            day4AverageTemp = day4AverageTemp/8;
-            day4AverageWind = day4AverageWind/8;
+            day4AverageTemp = Math.round(day4AverageTemp/8);
+            day4AverageWind = Math.round(day4AverageWind/8);
             day4AverageHumidity= day4AverageHumidity/8;
 
-            day5AverageTemp = day5AverageTemp/8;
-            day5AverageWind = day5AverageWind/8;
+            day5AverageTemp = Math.round(day5AverageTemp/8);
+            day5AverageWind = Math.round(day5AverageWind/8);
             day5AverageHumidity= day5AverageHumidity/8;
 
-            day6AverageTemp = day6AverageTemp/8;
-            day6AverageWind = day6AverageWind/8;
+            day6AverageTemp = Math.round(day6AverageTemp/8);
+            day6AverageWind = Math.round(day6AverageWind/8);
             day6AverageHumidity= day6AverageHumidity/8;
 
             console.log(day6AverageHumidity);
 
             $('.forcast-heading').addClass('p-2 text-center').text("Next 5-Day Forecast:");
+            
+            $('.day2').addClass('col').text(day2Date);
+            $('.day2').append($('<p>').addClass('p-2').text("Temparature: " + day2AverageTemp + "\u00B0" + "C"));
+            $('.day2').append($('<p>').addClass('p-2').text("Wind Speed: " + day2AverageWind + "MPH"));
+            $('.day2').append($('<p>').addClass('p-2').text("Humidity: " + day2AverageHumidity + "%"));
+
+            $('.day3').addClass('col').text(day3Date);
+            $('.day3').append($('<p>').addClass('p-2').text("Temparature: " + day3AverageTemp + "\u00B0" + "C"));
+            $('.day3').append($('<p>').addClass('p-2').text("Wind Speed: " + day3AverageWind + "MPH"));
+            $('.day3').append($('<p>').addClass('p-2').text("Humidity: " + day3AverageHumidity + "%"));
+
+            $('.day4').addClass('col').text(day3Date);
+            $('.day4').append($('<p>').addClass('p-2').text("Temparature: " + day4AverageTemp + "\u00B0" + "C"));
+            $('.day4').append($('<p>').addClass('p-2').text("Wind Speed: " + day4AverageWind + "MPH"));
+            $('.day4').append($('<p>').addClass('p-2').text("Humidity: " + day4AverageHumidity + "%"));
+
+            $('.day5').addClass('col').text(day3Date);
+            $('.day5').append($('<p>').addClass('p-2').text("Temparature: " + day5AverageTemp + "\u00B0" + "C"));
+            $('.day5').append($('<p>').addClass('p-2').text("Wind Speed: " + day5AverageWind + "MPH"));
+            $('.day5').append($('<p>').addClass('p-2').text("Humidity: " + day5AverageHumidity + "%"));
+
+            $('.day6').addClass('col').text(day3Date);
+            $('.day6').append($('<p>').addClass('p-2').text("Temparature: " + day6AverageTemp + "\u00B0" + "C"));
+            $('.day6').append($('<p>').addClass('p-2').text("Wind Speed: " + day6AverageWind + "MPH"));
+            $('.day6').append($('<p>').addClass('p-2').text("Humidity: " + day6AverageHumidity + "%"));
         });
 });
 
