@@ -66,7 +66,7 @@ searchBtn.on('click', function (e) {
             return response.json();
         })
         .then(function (data) {
-            if (data && city!=="") {
+            if (data && city!=="" && (city || city.lowerCase()) && !city.includes(',') && !city.includes('.')) {
                 createCityList(city);
                 $('.cardBorder2').css('display', 'block');
                 //
