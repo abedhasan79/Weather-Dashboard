@@ -214,19 +214,19 @@ function getDailyWeather(url) {
             $('.day3').append($('<p>').addClass('p-2').text("Wind Speed: " + day3AverageWind + "MPH"));
             $('.day3').append($('<p>').addClass('p-2').text("Humidity: " + day3AverageHumidity + "%"));
 
-            $('.day4').addClass('col').text(day3Date);
+            $('.day4').addClass('col').text(day4Date);
             $('.day4').append(imageIcon4);
             $('.day4').append($('<p>').addClass('p-2').text("Temparature: " + day4AverageTemp + "\u00B0" + "C"));
             $('.day4').append($('<p>').addClass('p-2').text("Wind Speed: " + day4AverageWind + "MPH"));
             $('.day4').append($('<p>').addClass('p-2').text("Humidity: " + day4AverageHumidity + "%"));
 
-            $('.day5').addClass('col').text(day3Date);
+            $('.day5').addClass('col').text(day5Date);
             $('.day5').append(imageIcon5);
             $('.day5').append($('<p>').addClass('p-2').text("Temparature: " + day5AverageTemp + "\u00B0" + "C"));
             $('.day5').append($('<p>').addClass('p-2').text("Wind Speed: " + day5AverageWind + "MPH"));
             $('.day5').append($('<p>').addClass('p-2').text("Humidity: " + day5AverageHumidity + "%"));
 
-            $('.day6').addClass('col').text(day3Date);
+            $('.day6').addClass('col').text(day6Date);
             $('.day6').append(imageIcon6);
             $('.day6').append($('<p>').addClass('p-2').text("Temparature: " + day6AverageTemp + "\u00B0" + "C"));
             $('.day6').append($('<p>').addClass('p-2').text("Wind Speed: " + day6AverageWind + "MPH"));
