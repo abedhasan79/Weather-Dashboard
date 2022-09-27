@@ -16,10 +16,12 @@ function createCityList(city) {
     cityList.append(citysearched);
 }
 
+// saves the name of the city in local storage
 function saveCitiesInStorage() {
     localStorage.setItem("cityList", JSON.stringify(cities));
 }
 
+// on page refresh shows content of local storage
 function init() {
     let savedCitlyList = JSON.parse(localStorage.getItem("cityList"));
     if (savedCitlyList !== null) {
@@ -32,10 +34,12 @@ function init() {
 }
 init();
 
+// every time a city is searched this function makes and array of cities
 function makeCityList(city) {
     cities.push(city);
 }
 
+// on clicking a city in the list thats gets created the weather info shows up again 
 $('ul').on("click", '.city-searched', function (e) {
     e.preventDefault();
     $('.cardBorder2').css('display', 'block');
@@ -49,7 +53,7 @@ $('ul').on("click", '.city-searched', function (e) {
 
 });
 
-
+// on clicking the search button list of cities gets created and displays weather info
 searchBtn.on('click', function (e) {
     e.preventDefault();
     //display weather today
@@ -86,6 +90,7 @@ searchBtn.on('click', function (e) {
 
 });
 
+// gets the current weather info from the api call
 function getCurrentWeather(url) {
     fetch(url)
         .then(function (response) {
@@ -100,9 +105,9 @@ function getCurrentWeather(url) {
             let temparature = data.main.temp;
             let windSpeed = data.wind.speed;
             let humidity = data.main.humidity;
-
             let nameAndDate = data.name + " (" + todayDate + ") ";
 
+            //appends name date icon temp windspeed humidity of current weather to current weather
             $('.current-weather-condition').addClass('p-2').text(nameAndDate);
             $('.current-weather-condition').append(imageIcon);
             $('.current-weather-condition').append($('<p>').addClass('p-2').text("Temparature: " + temparature + "\u00B0" + "C"));
@@ -113,6 +118,7 @@ function getCurrentWeather(url) {
         });
 }
 
+// gets the daily weather forcast form the api call
 function getDailyWeather(url) {
     fetch(url)
         .then(function (response) {
@@ -150,6 +156,8 @@ function getDailyWeather(url) {
             let day6AverageTemp = 0;
             let day6AverageWind = 0;
             let day6AverageHumidity = 0;
+
+            // tanking the average of temp windspeed humidity for for the next 5 days from a 3 hr forcast interval for each day
             for (let k = 0; k < dailyWeather[0].length; k++) {
                 day2AverageTemp += (dailyWeather[0][k].main.temp);
                 day2AverageWind += (dailyWeather[0][k].wind.speed);
@@ -172,6 +180,7 @@ function getDailyWeather(url) {
                 day6AverageHumidity += (dailyWeather[4][k].main.humidity);
             }
 
+            //average of temp , wind speed , humidity
             day2AverageTemp = Math.round((day2AverageTemp / 8));
             day2AverageWind = Math.round(day2AverageWind / 8);
             day2AverageHumidity = day2AverageHumidity / 8;
@@ -193,7 +202,7 @@ function getDailyWeather(url) {
             day6AverageHumidity = day6AverageHumidity / 8;
 
 
-            // setting up icons
+            // setting up icons for each weather condition for the 5 day forecast
             let iconeCode2 = dailyWeather[0][4].weather[0].icon;
             let iconUrl2 = "https://openweathermap.org/img/w/" + iconeCode2 + ".png";
             let imageIcon2 = $('<img>').addClass('weather-icon').attr('src', iconUrl2);
@@ -217,30 +226,35 @@ function getDailyWeather(url) {
 
             $('.forcast-heading').addClass('p-2 text-center').text("Next 5-Day Forecast:");
 
+            //appends next day1 forecast
             $('.day2').addClass('col').text(day2Date);
             $('.day2').append(imageIcon2);
             $('.day2').append($('<p>').addClass('p-2').text("Temparature: " + day2AverageTemp + "\u00B0" + "C"));
             $('.day2').append($('<p>').addClass('p-2').text("Wind Speed: " + day2AverageWind + "MPH"));
             $('.day2').append($('<p>').addClass('p-2').text("Humidity: " + day2AverageHumidity + "%"));
 
+            //appends day2 forecast
             $('.day3').addClass('col').text(day3Date);
             $('.day3').append(imageIcon3);
             $('.day3').append($('<p>').addClass('p-2').text("Temparature: " + day3AverageTemp + "\u00B0" + "C"));
             $('.day3').append($('<p>').addClass('p-2').text("Wind Speed: " + day3AverageWind + "MPH"));
             $('.day3').append($('<p>').addClass('p-2').text("Humidity: " + day3AverageHumidity + "%"));
 
+            //appends day3 forecast
             $('.day4').addClass('col').text(day4Date);
             $('.day4').append(imageIcon4);
             $('.day4').append($('<p>').addClass('p-2').text("Temparature: " + day4AverageTemp + "\u00B0" + "C"));
             $('.day4').append($('<p>').addClass('p-2').text("Wind Speed: " + day4AverageWind + "MPH"));
             $('.day4').append($('<p>').addClass('p-2').text("Humidity: " + day4AverageHumidity + "%"));
 
+            //appends day4 forecast
             $('.day5').addClass('col').text(day5Date);
             $('.day5').append(imageIcon5);
             $('.day5').append($('<p>').addClass('p-2').text("Temparature: " + day5AverageTemp + "\u00B0" + "C"));
             $('.day5').append($('<p>').addClass('p-2').text("Wind Speed: " + day5AverageWind + "MPH"));
             $('.day5').append($('<p>').addClass('p-2').text("Humidity: " + day5AverageHumidity + "%"));
 
+            //appends day5 forecast
             $('.day6').addClass('col').text(day6Date);
             $('.day6').append(imageIcon6);
             $('.day6').append($('<p>').addClass('p-2').text("Temparature: " + day6AverageTemp + "\u00B0" + "C"));
