@@ -2,17 +2,18 @@ let apiKey = 'edf8324ddc0c19c6ba6226fff1e2b0e7';
 // let city ='Toronto';
 
 let todayDate = moment().format('L');;
-
+let responseText = $('.response-text');
 let searchCity = $('#city-name');
 let cityList = $('.city-list');
 let searchBtn = $('#search-btn');
 let searchForm = $('.search-form');
 let cities = [];
+
 // creats city List on clicking search button
 function createCityList(city) {
+    
     let citysearched = $('<li>').addClass('p-2 btn btn-primary btn-sm btn-block btnBorder city-searched').text(city);
     cityList.append(citysearched);
-    // localStorage.setItem("cityNames", citysearched[0].val());
 }
 
 function saveCitiesInStorage() {
@@ -52,24 +53,35 @@ $('ul').on("click", '.city-searched', function (e) {
 searchBtn.on('click', function (e) {
     e.preventDefault();
     //display weather today
+    
     let city = searchCity.val().trim();
-    if (city !== "") {
-        createCityList(city);
-        $('.cardBorder2').css('display', 'block');
-        //
-        makeCityList(city);
-        saveCitiesInStorage();
-        searchForm[0].reset();
+    let urlRequest = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + '&units=metric';
+    let urlRequest2 = "https://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=" + apiKey + '&units=metric&cnt=40';
 
+    fetch(urlRequest)
+        .then(function (response) {
+            if(response.status === 404){
+                return;
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            if (data) {
+                createCityList(city);
+                $('.cardBorder2').css('display', 'block');
+                //
+                makeCityList(city);
+                saveCitiesInStorage();
+                searchForm[0].reset();
+        
+                //getiing weather data
+                getCurrentWeather(urlRequest);
+                getDailyWeather(urlRequest2);
+            } else {
+                alert("Enter a Valid City Name Please.\n 1st letter of name must be uppercase \n ex:Toronto or Winnipeg");
+            }
+        });
 
-        //getiing weather data
-        let urlRequest = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + '&units=metric';
-        let urlRequest2 = "https://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=" + apiKey + '&units=metric&cnt=40';
-        getCurrentWeather(urlRequest);
-        getDailyWeather(urlRequest2);
-    }else{
-        return;
-    }
 
 
 });
@@ -77,6 +89,7 @@ searchBtn.on('click', function (e) {
 function getCurrentWeather(url) {
     fetch(url)
         .then(function (response) {
+
             return response.json();
         })
         .then(function (data) {
@@ -87,11 +100,7 @@ function getCurrentWeather(url) {
             let temparature = data.main.temp;
             let windSpeed = data.wind.speed;
             let humidity = data.main.humidity;
-            console.log(data);
-            console.log(data.name + " " + todayDate + " " + data.weather[0].icon);
-            console.log(data.main.temp);
-            console.log(data.wind.speed);
-            console.log(data.main.humidity);
+
             let nameAndDate = data.name + " (" + todayDate + ") ";
 
             $('.current-weather-condition').addClass('p-2').text(nameAndDate);
@@ -107,17 +116,18 @@ function getCurrentWeather(url) {
 function getDailyWeather(url) {
     fetch(url)
         .then(function (response) {
+
             return response.json();
         })
         .then(function (data) {
             console.log(data);
+
             //get 5 days of weather every 3 hours
             let dailyWeather = [];
             for (let i = 0; i < data.list.length; i += 8) {
                 dailyWeather.push(data.list.slice(i, i + 8));
             }
-            console.log(dailyWeather);
-            console.log(moment().add(1, 'days').format('MM-DD-YYYY'));
+
             let day2Date = moment().add(1, 'days').format('MM-DD-YYYY');
             let day3Date = moment().add(2, 'days').format('MM-DD-YYYY');
             let day4Date = moment().add(3, 'days').format('MM-DD-YYYY');
@@ -182,7 +192,7 @@ function getDailyWeather(url) {
             day6AverageWind = Math.round(day6AverageWind / 8);
             day6AverageHumidity = day6AverageHumidity / 8;
 
-            console.log(day6AverageHumidity);
+
             // setting up icons
             let iconeCode2 = dailyWeather[0][4].weather[0].icon;
             let iconUrl2 = "https://openweathermap.org/img/w/" + iconeCode2 + ".png";
