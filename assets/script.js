@@ -77,7 +77,7 @@ function getCurrentWeather(url) {
         .then(function (data) {
             // include icon of weather
             let iconeCode = data.weather[0].icon;
-            let iconUrl = "http://openweathermap.org/img/w/" + iconeCode + ".png";
+            let iconUrl = "https://openweathermap.org/img/w/" + iconeCode + ".png";
             let imageIcon = $('<img>').addClass('weather-icon').attr('src', iconUrl);
             let temparature = data.main.temp;
             let windSpeed = data.wind.speed;
@@ -180,24 +180,24 @@ function getDailyWeather(url) {
             console.log(day6AverageHumidity);
             // setting up icons
             let iconeCode2 = dailyWeather[0][4].weather[0].icon;
-            let iconUrl2 = "http://openweathermap.org/img/w/" + iconeCode2 + ".png";
+            let iconUrl2 = "https://openweathermap.org/img/w/" + iconeCode2 + ".png";
             let imageIcon2 = $('<img>').addClass('weather-icon').attr('src', iconUrl2);
             // console.log(iconeCode2);
 
             let iconeCode3 = dailyWeather[1][4].weather[0].icon;
-            let iconUrl3 = "http://openweathermap.org/img/w/" + iconeCode3 + ".png";
+            let iconUrl3 = "https://openweathermap.org/img/w/" + iconeCode3 + ".png";
             let imageIcon3 = $('<img>').addClass('weather-icon').attr('src', iconUrl3);
 
             let iconeCode4 = dailyWeather[2][4].weather[0].icon;
-            let iconUrl4 = "http://openweathermap.org/img/w/" + iconeCode4 + ".png";
+            let iconUrl4 = "https://openweathermap.org/img/w/" + iconeCode4 + ".png";
             let imageIcon4 = $('<img>').addClass('weather-icon').attr('src', iconUrl4);
 
             let iconeCode5 = dailyWeather[3][4].weather[0].icon;
-            let iconUrl5 = "http://openweathermap.org/img/w/" + iconeCode5 + ".png";
+            let iconUrl5 = "https://openweathermap.org/img/w/" + iconeCode5 + ".png";
             let imageIcon5 = $('<img>').addClass('weather-icon').attr('src', iconUrl5);
 
             let iconeCode6 = dailyWeather[4][4].weather[0].icon;
-            let iconUrl6 = "http://openweathermap.org/img/w/" + iconeCode6 + ".png";
+            let iconUrl6 = "https://openweathermap.org/img/w/" + iconeCode6 + ".png";
             let imageIcon6 = $('<img>').addClass('weather-icon').attr('src', iconUrl6);
 
             $('.forcast-heading').addClass('p-2 text-center').text("Next 5-Day Forecast:");
