@@ -60,13 +60,13 @@ searchBtn.on('click', function (e) {
 
     fetch(urlRequest)
         .then(function (response) {
-            if(response.status === 404){
+            if(response.status === 404 || response.status === 400){
                 return;
             }
             return response.json();
         })
         .then(function (data) {
-            if (data) {
+            if (data && city!=="") {
                 createCityList(city);
                 $('.cardBorder2').css('display', 'block');
                 //
