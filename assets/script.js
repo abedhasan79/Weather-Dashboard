@@ -43,6 +43,7 @@ function makeCityList(city) {
 $('ul').on("click", '.city-searched', function (e) {
     e.preventDefault();
     $('.cardBorder2').css('display', 'block');
+    $('.forcast-container').css('display', 'block');
     let city = $(this).text();
     console.log(city);
 
@@ -73,6 +74,7 @@ searchBtn.on('click', function (e) {
             if (data && city!=="" && (city || city.lowerCase()) && !city.includes(',') && !city.includes('.')) {
                 createCityList(city);
                 $('.cardBorder2').css('display', 'block');
+                $('.forcast-container').css('display', 'block');
                 //
                 makeCityList(city);
                 saveCitiesInStorage();
@@ -82,7 +84,10 @@ searchBtn.on('click', function (e) {
                 getCurrentWeather(urlRequest);
                 getDailyWeather(urlRequest2);
             } else {
-                alert("Enter a Valid City Name Please.\n 1st letter of name must be uppercase \n ex:Toronto or Winnipeg");
+                $('.cardBorder2').css('display', 'block');
+                $('.forcast-container').css('display', 'none');
+                // alert("Enter a Valid City Name Please.\n 1st letter of name must be uppercase \n ex:Toronto or Winnipeg");
+                $('.current-weather-condition').text("Enter a Valid City Name Please.\n ex:Toronto or Winnipeg");
             }
         });
 
