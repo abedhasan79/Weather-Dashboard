@@ -41,8 +41,8 @@ $('ul').on("click", '.city-searched', function (e) {
     let city = $(this).text();
     console.log(city);
 
-    let urlRequest = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + '&units=metric';
-    let urlRequest2 = "http://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=" + apiKey + '&units=metric&cnt=40';
+    let urlRequest = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + '&units=metric';
+    let urlRequest2 = "https://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=" + apiKey + '&units=metric&cnt=40';
     getCurrentWeather(urlRequest);
     getDailyWeather(urlRequest2);
 
@@ -62,8 +62,8 @@ searchBtn.on('click', function (e) {
 
 
     //getiing weather data
-    let urlRequest = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + '&units=metric';
-    let urlRequest2 = "http://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=" + apiKey + '&units=metric&cnt=40';
+    let urlRequest = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + '&units=metric';
+    let urlRequest2 = "https://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=" + apiKey + '&units=metric&cnt=40';
     getCurrentWeather(urlRequest);
     getDailyWeather(urlRequest2);
 
