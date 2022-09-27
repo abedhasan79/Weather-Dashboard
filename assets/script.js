@@ -7,26 +7,70 @@ let searchCity = $('#city-name');
 let cityList = $('.city-list');
 let searchBtn = $('#search-btn');
 let searchForm = $('.search-form');
-
+let cities = [];
 // creats city List on clicking search button
 function createCityList(city) {
     let citysearched = $('<li>').addClass('p-2 btn btn-primary btn-sm btn-block btnBorder city-searched').text(city);
     cityList.append(citysearched);
+    // localStorage.setItem("cityNames", citysearched[0].val());
 }
 
-searchBtn.on('click', function () {
+function saveCitiesInStorage() {
+    localStorage.setItem("cityList", JSON.stringify(cities));
+}
+
+function init() {
+    let savedCitlyList = JSON.parse(localStorage.getItem("cityList"));
+    if (savedCitlyList !== null) {
+        cities = savedCitlyList;
+    }
+    for (let i = 0; i < cities.length; i++) {
+        createCityList(savedCitlyList[i]);
+    }
+
+}
+init();
+
+function makeCityList(city) {
+    cities.push(city);
+}
+
+$('ul').on("click", '.city-searched', function (e) {
+    e.preventDefault();
+    $('.cardBorder2').css('display', 'block');
+    let city = $(this).text();
+    console.log(city);
+
+    let urlRequest = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + '&units=metric';
+    let urlRequest2 = "http://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=" + apiKey + '&units=metric&cnt=40';
+    getCurrentWeather(urlRequest);
+    getDailyWeather(urlRequest2);
+
+});
+
+
+searchBtn.on('click', function (e) {
+    e.preventDefault();
     //display weather today
     $('.cardBorder2').css('display', 'block');
     //
     let city = searchCity.val().trim();
     createCityList(city);
+    makeCityList(city);
+    saveCitiesInStorage();
     searchForm[0].reset();
+
 
     //getiing weather data
     let urlRequest = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + '&units=metric';
     let urlRequest2 = "http://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=" + apiKey + '&units=metric&cnt=40';
+    getCurrentWeather(urlRequest);
+    getDailyWeather(urlRequest2);
 
-    fetch(urlRequest)
+});
+
+function getCurrentWeather(url) {
+    fetch(url)
         .then(function (response) {
             return response.json();
         })
@@ -53,9 +97,10 @@ searchBtn.on('click', function () {
 
 
         });
+}
 
-
-    fetch(urlRequest2)
+function getDailyWeather(url) {
+    fetch(url)
         .then(function (response) {
             return response.json();
         })
@@ -76,61 +121,61 @@ searchBtn.on('click', function () {
             // let day2AverageTemp=dailyWeather[0][0].main.temp;
             // console.log(day2AverageTemp);
             let day2AverageTemp = 0;
-            let day2AverageWind =0;
-            let day2AverageHumidity=0;
+            let day2AverageWind = 0;
+            let day2AverageHumidity = 0;
             let day3AverageTemp = 0;
-            let day3AverageWind =0;
-            let day3AverageHumidity=0;
+            let day3AverageWind = 0;
+            let day3AverageHumidity = 0;
             let day4AverageTemp = 0;
-            let day4AverageWind =0;
-            let day4AverageHumidity=0;
+            let day4AverageWind = 0;
+            let day4AverageHumidity = 0;
             let day5AverageTemp = 0;
-            let day5AverageWind =0;
-            let day5AverageHumidity=0;
+            let day5AverageWind = 0;
+            let day5AverageHumidity = 0;
             let day6AverageTemp = 0;
-            let day6AverageWind =0;
-            let day6AverageHumidity=0;
+            let day6AverageWind = 0;
+            let day6AverageHumidity = 0;
             for (let k = 0; k < dailyWeather[0].length; k++) {
                 day2AverageTemp += (dailyWeather[0][k].main.temp);
-                day2AverageWind +=(dailyWeather[0][k].wind.speed);
+                day2AverageWind += (dailyWeather[0][k].wind.speed);
                 day2AverageHumidity += (dailyWeather[0][k].main.humidity);
 
                 day3AverageTemp += (dailyWeather[1][k].main.temp);
-                day3AverageWind +=(dailyWeather[1][k].wind.speed);
+                day3AverageWind += (dailyWeather[1][k].wind.speed);
                 day3AverageHumidity += (dailyWeather[1][k].main.humidity);
 
                 day4AverageTemp += (dailyWeather[2][k].main.temp);
-                day4AverageWind +=(dailyWeather[2][k].wind.speed);
+                day4AverageWind += (dailyWeather[2][k].wind.speed);
                 day4AverageHumidity += (dailyWeather[2][k].main.humidity);
 
                 day5AverageTemp += (dailyWeather[3][k].main.temp);
-                day5AverageWind +=(dailyWeather[3][k].wind.speed);
+                day5AverageWind += (dailyWeather[3][k].wind.speed);
                 day5AverageHumidity += (dailyWeather[3][k].main.humidity);
 
                 day6AverageTemp += (dailyWeather[4][k].main.temp);
-                day6AverageWind +=(dailyWeather[4][k].wind.speed);
+                day6AverageWind += (dailyWeather[4][k].wind.speed);
                 day6AverageHumidity += (dailyWeather[4][k].main.humidity);
             }
 
-            day2AverageTemp = Math.round((day2AverageTemp/8));
-            day2AverageWind = Math.round(day2AverageWind/8);
-            day2AverageHumidity= day2AverageHumidity/8;
+            day2AverageTemp = Math.round((day2AverageTemp / 8));
+            day2AverageWind = Math.round(day2AverageWind / 8);
+            day2AverageHumidity = day2AverageHumidity / 8;
 
-            day3AverageTemp = Math.round(day3AverageTemp/8);
-            day3AverageWind = Math.round(day3AverageWind/8);
-            day3AverageHumidity= day3AverageHumidity/8;
+            day3AverageTemp = Math.round(day3AverageTemp / 8);
+            day3AverageWind = Math.round(day3AverageWind / 8);
+            day3AverageHumidity = day3AverageHumidity / 8;
 
-            day4AverageTemp = Math.round(day4AverageTemp/8);
-            day4AverageWind = Math.round(day4AverageWind/8);
-            day4AverageHumidity= day4AverageHumidity/8;
+            day4AverageTemp = Math.round(day4AverageTemp / 8);
+            day4AverageWind = Math.round(day4AverageWind / 8);
+            day4AverageHumidity = day4AverageHumidity / 8;
 
-            day5AverageTemp = Math.round(day5AverageTemp/8);
-            day5AverageWind = Math.round(day5AverageWind/8);
-            day5AverageHumidity= day5AverageHumidity/8;
+            day5AverageTemp = Math.round(day5AverageTemp / 8);
+            day5AverageWind = Math.round(day5AverageWind / 8);
+            day5AverageHumidity = day5AverageHumidity / 8;
 
-            day6AverageTemp = Math.round(day6AverageTemp/8);
-            day6AverageWind = Math.round(day6AverageWind/8);
-            day6AverageHumidity= day6AverageHumidity/8;
+            day6AverageTemp = Math.round(day6AverageTemp / 8);
+            day6AverageWind = Math.round(day6AverageWind / 8);
+            day6AverageHumidity = day6AverageHumidity / 8;
 
             console.log(day6AverageHumidity);
             // setting up icons
@@ -156,7 +201,7 @@ searchBtn.on('click', function () {
             let imageIcon6 = $('<img>').addClass('weather-icon').attr('src', iconUrl6);
 
             $('.forcast-heading').addClass('p-2 text-center').text("Next 5-Day Forecast:");
-            
+
             $('.day2').addClass('col').text(day2Date);
             $('.day2').append(imageIcon2);
             $('.day2').append($('<p>').addClass('p-2').text("Temparature: " + day2AverageTemp + "\u00B0" + "C"));
@@ -187,9 +232,7 @@ searchBtn.on('click', function () {
             $('.day6').append($('<p>').addClass('p-2').text("Wind Speed: " + day6AverageWind + "MPH"));
             $('.day6').append($('<p>').addClass('p-2').text("Humidity: " + day6AverageHumidity + "%"));
         });
-});
-
-
+}
 
 
 
