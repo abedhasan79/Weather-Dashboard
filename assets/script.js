@@ -52,20 +52,25 @@ $('ul').on("click", '.city-searched', function (e) {
 searchBtn.on('click', function (e) {
     e.preventDefault();
     //display weather today
-    $('.cardBorder2').css('display', 'block');
-    //
     let city = searchCity.val().trim();
-    createCityList(city);
-    makeCityList(city);
-    saveCitiesInStorage();
-    searchForm[0].reset();
+    if (city !== "") {
+        createCityList(city);
+        $('.cardBorder2').css('display', 'block');
+        //
+        makeCityList(city);
+        saveCitiesInStorage();
+        searchForm[0].reset();
 
 
-    //getiing weather data
-    let urlRequest = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + '&units=metric';
-    let urlRequest2 = "https://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=" + apiKey + '&units=metric&cnt=40';
-    getCurrentWeather(urlRequest);
-    getDailyWeather(urlRequest2);
+        //getiing weather data
+        let urlRequest = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + '&units=metric';
+        let urlRequest2 = "https://api.openweathermap.org/data/2.5/forecast/?q=" + city + "&appid=" + apiKey + '&units=metric&cnt=40';
+        getCurrentWeather(urlRequest);
+        getDailyWeather(urlRequest2);
+    }else{
+        return;
+    }
+
 
 });
 
