@@ -12,7 +12,7 @@ let cities = [];
 // creats city List on clicking search button
 function createCityList(city) {
     
-    let citysearched = $('<li>').addClass('p-2 btn btn-primary btn-sm btn-block btnBorder city-searched').text(city);
+    let citysearched = $('<li>').addClass('p-3 btn btn-primary btn-sm btn-block btnBorder city-searched').text(city);
     cityList.append(citysearched);
 }
 
@@ -106,14 +106,17 @@ function getCurrentWeather(url) {
             // include icon of weather
             let iconeCode = data.weather[0].icon;
             let iconUrl = "https://openweathermap.org/img/w/" + iconeCode + ".png";
-            let imageIcon = $('<img>').addClass('weather-icon').attr('src', iconUrl);
+            let imageIcon = $('<img>').addClass('weather-icon weatherImg').attr('src', iconUrl);
             let temparature = data.main.temp;
             let windSpeed = data.wind.speed;
             let humidity = data.main.humidity;
             let nameAndDate = data.name + " (" + todayDate + ") ";
 
             //appends name date icon temp windspeed humidity of current weather to current weather
-            $('.current-weather-condition').addClass('p-2').text(nameAndDate);
+            $('.current-weather-condition').addClass('p').text(' ');
+            // $('.current-weather-condition').addClass('p-2').text(nameAndDate);
+            $('.current-weather-condition').append($('<span>').addClass('spanText').text(nameAndDate));
+            $('.current-weather-condition').append($('<br>'));
             $('.current-weather-condition').append(imageIcon);
             $('.current-weather-condition').append($('<p>').addClass('p-2').text("Temparature: " + temparature + "\u00B0" + "C"));
             $('.current-weather-condition').append($('<p>').addClass('p-2').text("Wind Speed: " + windSpeed + "MPH"));
@@ -229,10 +232,11 @@ function getDailyWeather(url) {
             let iconUrl6 = "https://openweathermap.org/img/w/" + iconeCode6 + ".png";
             let imageIcon6 = $('<img>').addClass('weather-icon').attr('src', iconUrl6);
 
-            $('.forcast-heading').addClass('p-2 text-center').text("Next 5-Day Forecast:");
+            $('.forcast-heading').addClass('next5Text text-center').text("Next 5-Day Forecast:");
 
             //appends next day1 forecast
             $('.day2').addClass('col').text(day2Date);
+            $('.day2').append($('<br>'));
             $('.day2').append(imageIcon2);
             $('.day2').append($('<p>').addClass('p-2').text("Temparature: " + day2AverageTemp + "\u00B0" + "C"));
             $('.day2').append($('<p>').addClass('p-2').text("Wind Speed: " + day2AverageWind + "MPH"));
@@ -240,6 +244,7 @@ function getDailyWeather(url) {
 
             //appends day2 forecast
             $('.day3').addClass('col').text(day3Date);
+            $('.day3').append($('<br>'));
             $('.day3').append(imageIcon3);
             $('.day3').append($('<p>').addClass('p-2').text("Temparature: " + day3AverageTemp + "\u00B0" + "C"));
             $('.day3').append($('<p>').addClass('p-2').text("Wind Speed: " + day3AverageWind + "MPH"));
@@ -247,6 +252,7 @@ function getDailyWeather(url) {
 
             //appends day3 forecast
             $('.day4').addClass('col').text(day4Date);
+            $('.day4').append($('<br>'));
             $('.day4').append(imageIcon4);
             $('.day4').append($('<p>').addClass('p-2').text("Temparature: " + day4AverageTemp + "\u00B0" + "C"));
             $('.day4').append($('<p>').addClass('p-2').text("Wind Speed: " + day4AverageWind + "MPH"));
@@ -254,6 +260,7 @@ function getDailyWeather(url) {
 
             //appends day4 forecast
             $('.day5').addClass('col').text(day5Date);
+            $('.day5').append($('<br>'));
             $('.day5').append(imageIcon5);
             $('.day5').append($('<p>').addClass('p-2').text("Temparature: " + day5AverageTemp + "\u00B0" + "C"));
             $('.day5').append($('<p>').addClass('p-2').text("Wind Speed: " + day5AverageWind + "MPH"));
@@ -261,6 +268,7 @@ function getDailyWeather(url) {
 
             //appends day5 forecast
             $('.day6').addClass('col').text(day6Date);
+            $('.day6').append($('<br>'));
             $('.day6').append(imageIcon6);
             $('.day6').append($('<p>').addClass('p-2').text("Temparature: " + day6AverageTemp + "\u00B0" + "C"));
             $('.day6').append($('<p>').addClass('p-2').text("Wind Speed: " + day6AverageWind + "MPH"));
