@@ -28,4 +28,4 @@ https://abedhasan79.github.io/Weather-Dashboard/
 
 # Screenshot Of Application
 
-![Screenshot 2022-09-27 153424](https://user-images.githubusercontent.com/106339494/192619349-9b8964fe-d778-4f14-8f4b-6992150c1583.png)
+![Screenshot 2022-09-27 231442](https://user-images.githubusercontent.com/106339494/192679334-1e604156-6ee9-4f33-981b-7754dbcfde52.png)
